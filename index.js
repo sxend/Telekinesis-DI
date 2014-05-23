@@ -1,9 +1,10 @@
 'use strict';
-
+var path = require('path');
+console.log(path.dirname(process.argv[1] ? process.argv[1]: '.'));
 var AnnotationScanner = function() {
     this.annotationAreaRegex = /^function(.*?){/
     this.typeAnnotationRegex = /.*\) *(\/\*(.*)\*\/)/
-    this.argumentAreaRegex = /\(.*\)/g
+    this.argumentAreaRegex = /\(.*\)/
     this.annotationRegex = /\/\* *?(@.*?)\*\//
 }
 
@@ -66,6 +67,7 @@ Context.prototype.register = function(Type, instance) {
     if (result) {
         instance = instance || this._new(Type);
         this.__container[result] = instance;
+        return instance;
     }
 
 }
@@ -107,5 +109,8 @@ Context.prototype.call = function() {
     var args = this.argmentResolve(func, thisArgs);
     return func.apply(this, args);
 };
+Context.prototype.scan = function(t){
+    
+}
 
 module.exports = new Context();
