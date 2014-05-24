@@ -1,4 +1,3 @@
-var context = require('../../');
 
 var Speak = function() /*@module Speak */ {
 };

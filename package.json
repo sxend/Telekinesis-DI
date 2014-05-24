@@ -1,7 +1,7 @@
 {
-  "name": "annotation-di",
-  "version": "0.0.0",
-  "description": "Comment-based Annotation DI",
+  "name": "Telekinesis",
+  "version": "0.0.1",
+  "description": "Comment-based Annotation, DI Container",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -8,7 +8,6 @@ var AnnotationScanner = function() {
 }
 
 AnnotationScanner.prototype.__annotationAreaExtract = function(funcString) {
-
     return funcString.match(this.annotationAreaRegex)[1].trim();
 }
 AnnotationScanner.prototype.__sliceAnnotation = function(annotationArea) {
@@ -36,13 +35,13 @@ AnnotationScanner.prototype.extract = function(obj) {
     var context = this;
     if (obj instanceof Array) {
         return obj.map(function(func) {
-            return ext(func);
+            return _extract(func);
         });
     } else {
-        return ext(obj);
+        return _extract(obj);
     }
 
-    function ext(func) {
+    function _extract(func) {
         var result = {
             argAnnotations: null,
             typeAnnotations: null
