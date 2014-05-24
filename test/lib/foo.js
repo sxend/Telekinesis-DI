@@ -1,4 +1,3 @@
-var context = require("../../");
 
 var Foo = function(speak /*@inject Speak*/ , message /*@inject "foo" */ ) /*@module com.example.Foo*/ {
     this.speak = speak;
@@ -8,4 +7,4 @@ Foo.prototype.fooCall = function() {
     this.speak.say(this.message);
 };
 
-module.exports = context.register(Foo);
+module.exports = Foo;

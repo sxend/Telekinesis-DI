@@ -1,27 +1,24 @@
-
 var context = require("../");
-context.scan("./");
-
-
-// context.register(Speak, new Speak());
-
-// var foo = context._new(Foo); // newしたければ勝手にどうぞ
-// foo.fooCall();
-// var bar = context._new(Bar);
-// bar.barCall();
-// context.register(Foo);
-// context.register(Bar);
-var speak = require('./lib/speak');
 context.scan(__dirname);
-
-
+console.log(context.__container);
 context.call(function(fooinstance /*@inject  com.example.Foo */ , a, barinstance /*@inject Bar*/ , b) {
-    fooinstance.fooCall(); // foo
-    console.log(a); // 1
-    barinstance.barCall(); // bar
-    console.log(b); // 2
+	fooinstance.fooCall(); // foo
+	console.log(a); // 1
+	barinstance.barCall(); // bar
+	console.log(b); // 2
 }, 1, 2);
 context.call(function() {
-    console.log("no args");
+	console.log("no args");
 });
-var other = context.call()
+var ConstInjection = require('./lib/const');
+var c = new ConstInjection();
+c.invoke(); // const
+context.call(function(constInjection1 /*@inject ConstInjection*/ ) {
+	context.call(function(constInjection2 /*@inject ConstInjection*/ ) {
+		console.log(constInjection1 === constInjection2); // true
+		console.log(c === constInjection1); //false
+	});
+});
+context.call(function(func /*@inject functionModule*/){
+	context.call(func);
+});
