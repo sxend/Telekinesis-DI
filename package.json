@@ -1,5 +1,5 @@
 {
-  "name": "Telekinesis-DI",
+  "name": "telekinesis-di",
   "version": "0.0.1",
   "description": "Comment-based Annotation, DI Container",
   "main": "index.js",
