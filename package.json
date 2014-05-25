@@ -1,6 +1,6 @@
 {
   "name": "telekinesis-di",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Comment-based Annotation, DI Container",
   "main": "index.js",
   "scripts": {

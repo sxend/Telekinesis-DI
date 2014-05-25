@@ -3,6 +3,8 @@ Telekinesis DI
 
 ** Annotation Based DI Library **
 
+
+please read test/example.js and test/lib/*.js
 ```javascript
 var context = require("../");
 context.scan(__dirname + '/lib');
