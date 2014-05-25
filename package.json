@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:sxend/annotation-di.git"
+    "url": "git@github.com:sxend/Telekinesis-DI.git"
   },
   "keywords": [
     "annotation",
@@ -18,7 +18,7 @@
   "author": "sxend",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sxend/annotation-di/issues"
+    "url": "https://github.com/sxend/Telekinesis-DI/issues"
   },
-  "homepage": "https://github.com/sxend/annotation-di"
+  "homepage": "https://github.com/sxend/Telekinesis-DI"
 }
