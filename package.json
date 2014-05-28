@@ -20,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/sxend/Telekinesis-DI/issues"
   },
-  "homepage": "https://github.com/sxend/Telekinesis-DI"
+  "homepage": "https://github.com/sxend/Telekinesis-DI",
+  "dependencies": {
+    "telekinesis-annotation": "0.0.4"
+  },
+  "devDependencies": {
+    "expect.js": "~0.3.1"
+  }
 }
