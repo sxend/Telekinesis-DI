@@ -24,5 +24,5 @@ context.call(function(constInjection1 /*@inject ConstInjection*/ , constInjectio
 
 });
 context.call(function() {
-    console.log("no arguments");
+    console.log("no arguments"); // noargs
 });

@@ -30,9 +30,12 @@
             instance: undefined
         }
         if (Type instanceof String) {
-            data.instance = instance;
+            data.instance = function(){
+                return instance;
+            };
             data.isDirect = true;
-            return internal.container[Type] = data;
+            internal.container[typeName] = data;
+            return;
         }
         if (!(Type instanceof Function)) {
             return;
@@ -53,7 +56,8 @@
         };
 
         data.isDirect = false;
-        data.instance = (isFunction || isPrototype) ? Type : _new(Type);
+        // data.instance = (isFunction || isPrototype) ? Type : _new(Type);
+        data.instance = Type;
         internal.container[typeName] = data;
         return Type;
     }
@@ -62,6 +66,9 @@
 
         var thisArgs = Array.prototype.slice.call(arguments);
         var Type = thisArgs.shift();
+        if(!(Type instanceof Function)){
+            return Type;
+        }
         var parsedData = internal.annotationParser.parse(Type);
         var args = createArg(parsedData, thisArgs);
 
@@ -101,13 +108,21 @@
         return F;
     }
 
-    function createInjectValue(typeName) {
-        var data = internal.container[typeName];
+    function createInjectValue(injectAnnotationValue) {
+
+        if(!injectAnnotationValue){
+            return;
+        }
+        var quoteMatched = injectAnnotationValue.match(/"([\s\S]*)"/m);
+        if(quoteMatched){
+            return quoteMatched[1];
+        }
+        var data = internal.container[injectAnnotationValue];
         if(!data){
             return;
         }
-        if (data.isDirect || !data.metadata) {
-            return data.instance;
+        if (data.isDirect) {
+            return data.instance();
         }
 
         if (data.metadata.isPrototype) {
@@ -117,7 +132,11 @@
                 return cloneObject(data.instance);
             }
         }
-        return data.instance || new PlaceHolder(typeName);
+        if(!data.metadata.isFunction){
+            data.instance = _new(data.instance);
+        }
+         
+        return data.instance;
 
     }
 
@@ -173,13 +192,12 @@
             }
         }
         read(dirname);
-        console.log(internal.container);
     }
     Context.prototype.wrap = function(origin) {
         var context = this;
         var wrapped = function() {
             var that = this;
-            var injected = context._new(origin);
+            var injected = _new(origin);
             Object.keys(injected).forEach(function(key) {
                 that[key] = injected[key];
             });
