@@ -63,5 +63,5 @@ context.call(function(Proto1 /*@inject com.example.ProtoFunc*/
     
      
 });
-
+require('./lib/wrap.js');
 console.log("succeed.");
